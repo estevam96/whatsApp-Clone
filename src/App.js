@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text} from 'react-native';
-import FormLogin from './components/FormLogin';
+import Routes from './Routes';
 
 export default props => (
-    <FormLogin />
+    <Routes />
 );
 
