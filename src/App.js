@@ -11,7 +11,7 @@ class App extends Component {
     componentWillMount() {
         //Configuração firebase
         firebase.initializeApp({
-            apiKey: 'apiKey',
+            apiKey: 'apiKey ',
             authDomain: 'authDomain',
             databaseURL: 'URL',
             projectId: 'ID',
