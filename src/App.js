@@ -10,6 +10,7 @@ import reducers from './reducers';
 class App extends Component {
     componentWillMount() {
         //Configuração firebase
+        //Altera para sua configuração do firebase
         firebase.initializeApp({
             apiKey: 'apiKey ',
             authDomain: 'authDomain',
