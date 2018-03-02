@@ -3,8 +3,6 @@
 .DS_Store
 
 
-src/App.js
-
 # Xcode
 #
 build/
@@ -56,4 +54,3 @@ fastlane/Preview.html
 fastlane/screenshots
 
 
-src/App.js
