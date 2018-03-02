@@ -37,7 +37,7 @@ export default (state = INITIAL_STATE, action) => {
         case LOGIN_EM_ANDAMENTO:
             return { ...state, loading_Login: true };
         case CADASTRP_EM_ANDAMENTO:
-            return { ...state, loading_cadastro:true };
+            return { ...state, loading_cadastro: true };
         default:
             return state;
     }
