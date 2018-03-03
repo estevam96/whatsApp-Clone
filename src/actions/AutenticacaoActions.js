@@ -34,9 +34,8 @@ export const modificarNome = texto => (
     }
 );
 
-export const cadastraUsuario = ({ nome, email, senha }) => {
-   return dispatch => {
-
+export const cadastraUsuario = ({ nome, email, senha }) => (
+  dispatch => {
         dispatch({ type: CADASTRP_EM_ANDAMENTO });
         firebase.auth().createUserWithEmailAndPassword(email, senha)
             .then(user => {
@@ -48,7 +47,7 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
             .catch(erro => cadastroUsuarioErro(erro, dispatch));
     }
 
-};
+);
 
 const cadastroUsuarioSucesso = (dispatch) => {
     dispatch({ type: CADASTRA_USUARIO_SUCESSO });
