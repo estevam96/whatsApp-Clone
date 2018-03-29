@@ -15,8 +15,8 @@ export default class Principal extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: 'first', title: 'Conversas' },
-      { key: 'second', title: 'Conatatos' },
+      { key: '1', title: 'Conversas' },
+      { key: '2', title: 'Conatatos' },
     ],
   };
 
@@ -25,8 +25,8 @@ export default class Principal extends React.Component {
   _renderHeader = props => <TabBarMenu {...props} />;
 
   _renderScene = SceneMap({
-    first: Conversas,
-    second: Conatatos,
+    '1': Conversas,
+    '2': Conatatos
   });
 
   render() {
@@ -37,7 +37,7 @@ export default class Principal extends React.Component {
         renderScene={this._renderScene}
         renderHeader={this._renderHeader}
         onIndexChange={this._handleIndexChange}
-        initialLayout={initialLayout}
+      
       />
     );
   }

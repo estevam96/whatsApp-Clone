@@ -15,6 +15,10 @@ import { modificaEmail, modificaSenha, autenticarUsuario } from '../actions/Aute
 const background = require('../img/bg.png');
 
 class formLogin extends Component {
+    constructor(props) {
+        super(props);
+        console.ignoredYellowBox = ['Setting a timer'];
+    }
 
     _autenticarUsuario() {
         const { email, senha } = this.props;
