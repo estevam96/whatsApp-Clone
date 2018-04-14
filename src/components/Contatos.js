@@ -1,47 +1,57 @@
 import React, { Component } from 'react';
-import { View, Text, ListView } from 'react-native';
+import { View, Text, ListView, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { contatosUsuarioFetch } from '../actions/AppActions';
-
+import { Actions } from 'react-native-router-flux';
 
 class Contatos extends Component {
     componentWillMount() {
         this.props.contatosUsuarioFetch();
-        this.criaFonteDeDados(this.props.contatos)
+        this.criaFonteDeDados(this.props.contatos);
     }
 
     componentWillReceiveProps(nextProps) {
-        this.criaFonteDeDados(nextProps.contatos)
+        this.criaFonteDeDados(nextProps.contatos);
     }
 
     criaFonteDeDados(contatos) {
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
 
-        this.fonteDeDados = ds.cloneWithRows(contatos)
+        this.fonteDeDados = ds.cloneWithRows(contatos);
+    }
+
+    renderRow(contato) {
+        return (
+            <TouchableHighlight
+                onPress={() => Actions.conversa({ 
+                    title: contato.nome, 
+                    contatoNome: contato.nome, 
+                    contatoEmail: contato.email 
+                })}
+            >
+                <View
+                    style={{
+                        flex: 1,
+                        paddingTop: 50,
+                        borderBottomWidth: 1,
+                        borderColor: '#ccc'
+                    }}>
+                    <Text style={{ fontSize: 25 }}>{contato.nome}</Text>
+                    <Text style={{ fontSize: 18 }}>{contato.email}</Text>
+                </View>
+            </TouchableHighlight>
+        );
     }
 
     render() {
         return (
-            <View>
-                <Text> Area de contato</Text>
-                <ListView
-                    enableEmptySections
-                    dataSource={this.fonteDeDados}
-                    renderRow={(data) => (
-                        <View
-                            style={{
-                                flex: 1,
-                                paddingTop: 50,
-                                borderBottomWidth: 1,
-                                borderColor: '#ccc'
-                            }}>
-                            <Text style={{ fontSize: 25 }}>{data.nome}</Text>
-                            <Text style={{ fontSize: 18 }}>{data.email}</Text>
-                        </View>
-                    )}
-                />
-            </View>
+            <ListView
+                enableEmptySections
+                dataSource={this.fonteDeDados}
+                renderRow={this.renderRow}
+            />
+
         );
     }
 }
