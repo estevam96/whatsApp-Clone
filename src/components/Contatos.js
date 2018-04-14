@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, ListView, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { contatosUsuarioFetch } from '../actions/AppActions';
 import { Actions } from 'react-native-router-flux';
+import { contatosUsuarioFetch } from '../actions/AppActions';
+
 
 class Contatos extends Component {
     componentWillMount() {
@@ -33,7 +34,7 @@ class Contatos extends Component {
                 <View
                     style={{
                         flex: 1,
-                        paddingTop: 50,
+                        paddingTop: 20,
                         borderBottomWidth: 1,
                         borderColor: '#ccc'
                     }}>
@@ -56,7 +57,7 @@ class Contatos extends Component {
     }
 }
 
-const mapStateToProps = state => {
+mapStateToProps = state => {
     const contatos = _.map(state.ListaContatoRedurcer, (val, uid) => {
         return { ...val, uid };
     });

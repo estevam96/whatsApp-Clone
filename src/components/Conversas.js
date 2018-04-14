@@ -9,17 +9,19 @@ import { conversasUsuarioFerch } from '../actions/AppActions';
 class Conversas extends Component {
     componentWillMount() {
         this.props.conversasUsuarioFerch();
+        this.criaFonteDeDados(this.props.conversas);
     }
     componentWillReceiveProps(nextProps) {
-        this.props.criaFonteDedados(nextProps.Conversas);
+        this.criaFonteDeDados(nextProps.conversas);
     }
 
-    criaFonteDedados(conversas) {
-        const ds = new ListView.DataSource({ rowaChanged: (r1, r2) => r1 !== r2 });
+    criaFonteDeDados(conversas) {
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.dataSource = ds.cloneWithRows(conversas);
     }
 
-    renderRow = (conversa) => (
+    renderRow = (conversa) => {
+        return (
         <TouchableHighlight 
             onPress={
                 () => Actions.conversa({ 
@@ -33,13 +35,14 @@ class Conversas extends Component {
                 <Text style={{ fontSize: 25 }}>{conversa.nome} </Text>
             </View>
         </TouchableHighlight>
-    )
+    );
+}
 
 
     render() {
         return (
             <ListView
-                enableE0mptySections
+                enableEmptySections
                 dataSource={this.dataSource}
                 renderRow={this.renderRow}
             />
@@ -47,8 +50,8 @@ class Conversas extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    const conversas = _.map(state.ListaConversaReducer, (val, uid) => {
+mapStateToProps = state => {
+    const conversas = _.map(state.ListaConversasReducer, (val, uid) => {
         return { ...val, uid };
     });
 

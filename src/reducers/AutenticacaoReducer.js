@@ -4,6 +4,7 @@ import {
     MODIFICA_NOME,
     CADASTRA_USUARIO_SUCESSO,
     CADASTRA_USUARIO_ERRO,
+    LOGIN_USUARIO_SUCESSO,
     LOGIN_USUARIO_ERRO,
     LOGIN_EM_ANDAMENTO,
     CADASTRP_EM_ANDAMENTO
@@ -33,6 +34,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, nome: '', senha: '', loading_cadastro: false };
         case LOGIN_USUARIO_ERRO:
             return { ...state, erroLogin: action.payload, loading_Login: false };
+        case LOGIN_USUARIO_SUCESSO:
+            return { ...state, ...INITIAL_STATE };
         case LOGIN_EM_ANDAMENTO:
             return { ...state, loading_Login: true };
         case CADASTRP_EM_ANDAMENTO:
