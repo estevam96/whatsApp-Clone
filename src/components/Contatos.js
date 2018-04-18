@@ -7,6 +7,7 @@ import { contatosUsuarioFetch } from '../actions/AppActions';
 
 
 class Contatos extends Component {
+
     componentWillMount() {
         this.props.contatosUsuarioFetch();
         this.criaFonteDeDados(this.props.contatos);
@@ -17,7 +18,7 @@ class Contatos extends Component {
     }
 
     criaFonteDeDados(contatos) {
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
         this.fonteDeDados = ds.cloneWithRows(contatos);
     }
@@ -25,19 +26,15 @@ class Contatos extends Component {
     renderRow(contato) {
         return (
             <TouchableHighlight
-                onPress={() => Actions.conversa({ 
-                    title: contato.nome, 
-                    contatoNome: contato.nome, 
-                    contatoEmail: contato.email 
-                })}
+                onPress={ 
+                    () => Actions.conversa({ 
+                        title: contato.nome, 
+                        contatoNome: contato.nome, 
+                        contatoEmail: contato.email 
+                    }) 
+                }
             >
-                <View
-                    style={{
-                        flex: 1,
-                        paddingTop: 20,
-                        borderBottomWidth: 1,
-                        borderColor: '#ccc'
-                    }}>
+                <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#CCC' }}>
                     <Text style={{ fontSize: 25 }}>{contato.nome}</Text>
                     <Text style={{ fontSize: 18 }}>{contato.email}</Text>
                 </View>
@@ -52,18 +49,15 @@ class Contatos extends Component {
                 dataSource={this.fonteDeDados}
                 renderRow={this.renderRow}
             />
-
-        );
+        )
     }
 }
 
 mapStateToProps = state => {
-    const contatos = _.map(state.ListaContatoRedurcer, (val, uid) => {
+    const contatos = _.map(state.ListaContatosReducer, (val, uid) => {
         return { ...val, uid };
     });
-    return {
-        contatos
-    };
+    return { contatos };
 };
 
 export default connect(mapStateToProps, { contatosUsuarioFetch })(Contatos);

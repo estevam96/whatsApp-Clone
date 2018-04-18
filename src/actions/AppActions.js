@@ -102,20 +102,21 @@ export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
         firebase.database().ref(`/mensagens/${usuarioEmailB64}/${contatoEmailB64}`)
             .push({ mensagem, tipo: 'e' })
             .then(() => {
-                firebase.database.ref(`/mensagens/${contatoEmailB64}/${usuarioEmailB64}`)
+                firebase.database().ref(`/mensagens/${contatoEmailB64}/${usuarioEmailB64}`)
                     .push({ mensagem, tipo: 'r' })
                     .then(() => dispatch({ type: ENVIA_MENSAGEM_SUCESSO }));
             })
             .then(() => {
-                firebase.database.ref(`/usuario_conversas/${usuarioEmailB64}/${contatoEmailB64}`)
+                firebase.database().ref(`/usuario_conversas/${usuarioEmailB64}/${contatoEmailB64}`)
                     .set({ nome: contatoNome, email: contatoEmail });
             })
             .then(() => {
-                firebase.database.ref(`/contato/${usuarioEmailB64}`)
+                firebase.database().ref(`/contato/${usuarioEmailB64}`)
                     .once('value')
                     .then(snapshot => {
                         const dadosUsuario = _.first(_.values(snapshot.val()));
-                        firebase.database.ref(`/usuario_conversas/${contatoEmailB64}/${usuarioEmailB64}`)
+                        firebase.database()
+                            .ref(`/usuario_conversas/${contatoEmailB64}/${usuarioEmailB64}`)
                             .set({ nome: dadosUsuario.nome, email: usuarioEmail });
                     });
             });
@@ -135,11 +136,12 @@ export const conversaUsuarioFerch = contatoEmail => {
     };
 };
 
-export const conversasUsuarioFerch = () => {
+export const conversasUsuarioFetch = () => {
     const { currentUser } = firebase.auth();
 
     return dispatch => {
         const usuarioEmailB64 = b64.encode(currentUser.email);
+
         firebase.database().ref(`/usuario_conversas/${usuarioEmailB64}`)
             .on('value', snapshot => {
                 dispatch({ type: LISTA_CONVERSAS_USUARIO, payload: snapshot.val() });
