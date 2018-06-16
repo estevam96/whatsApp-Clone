@@ -8,20 +8,23 @@
   },
   "dependencies": {
     "base-64": "^0.1.0",
-    "firebase": "^4.12.1",
-    "lodash": "^4.17.5",
+    "firebase": "^4.13.1",
+    "lodash": "^4.17.10",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
-    "react-native-router-flux": "^4.0.0-beta.28",
+    "react-native-router-flux": "^4.0.0-beta.32",
     "react-native-tab-view": "^0.0.74",
-    "react-redux": "^5.0.6",
+    "react-redux": "^5.0.7",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
     "babel-jest": "22.2.2",
     "babel-preset-react-native": "4.0.0",
+    "eslint": "^4.19.1",
     "eslint-config-rallycoding": "^3.2.0",
+    "eslint-plugin-react": "^7.9.1",
     "jest": "22.3.0",
     "react-test-renderer": "16.0.0-alpha.6"
   },

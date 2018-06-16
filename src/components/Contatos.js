@@ -8,12 +8,12 @@ import { contatosUsuarioFetch } from '../actions/AppActions';
 
 class Contatos extends Component {
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.props.contatosUsuarioFetch();
         this.criaFonteDeDados(this.props.contatos);
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         this.criaFonteDeDados(nextProps.contatos);
     }
 
@@ -49,7 +49,7 @@ class Contatos extends Component {
                 dataSource={this.fonteDeDados}
                 renderRow={this.renderRow}
             />
-        )
+        );
     }
 }
 
